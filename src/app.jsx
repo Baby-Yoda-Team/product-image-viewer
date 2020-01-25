@@ -10,6 +10,10 @@ class App extends React.Component {
       <div>React!!</div>
     )
   }
+
+  componentDidMount(){
+
+  }
 }
 
 export default App;

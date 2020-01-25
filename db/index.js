@@ -10,10 +10,8 @@ var db = mongoose.connect(config.uri, config.options).then(
 
 
 module.exports = {
-  connect
-
   retrieve: (query, callback) => {
-    Product.findOne(query)
+    config.Product.findOne(query)
       .then((results) => { callback(results) });
   }
 }
