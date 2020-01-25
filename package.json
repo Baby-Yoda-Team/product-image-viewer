@@ -6,7 +6,8 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "build": "npx webpack --watch",
-    "start": "nodemon"
+    "start": "nodemon",
+    "seed": "node db/seeder.js"
   },
   "author": "",
   "license": "ISC",
@@ -21,7 +22,10 @@
     "nodemon": "^2.0.2"
   },
   "dependencies": {
+    "body-parser": "^1.19.0",
+    "es6-request": "^3.0.5",
     "express": "^4.17.1",
+    "faker": "^4.1.0",
     "mongoose": "^5.8.9",
     "react": "^16.12.0",
     "react-dom": "^16.12.0"

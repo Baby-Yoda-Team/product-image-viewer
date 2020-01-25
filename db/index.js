@@ -1,8 +1,21 @@
 var mongoose = require('mongoose');
-mongoose.connect('mongodb://localhost/test', {useNewUrlParser: true, useUnifiedTopology: true });
+const config = require('./config.js');
 
-var db = mongoose.connection;
-db.on('error', console.error.bind(console, 'connection error:'));
-db.once('open', function() {
-  console.log('mongoose connected!')
-});
+
+var db = mongoose.connect(config.uri, config.options).then(
+  () => { console.log('connected to costco database...') },
+  err => { console.log(err) }
+);
+
+
+
+module.exports = {
+  connect
+
+  retrieve: (query, callback) => {
+    Product.findOne(query)
+      .then((results) => { callback(results) });
+  }
+}
+
+
