@@ -4,7 +4,6 @@ const port = 3004;
 const path = require('path');
 const db = require('../db/index.js');
 const bodyParser = require('body-parser');
-const request = require('es6-request');
 
 app.use(express.static(path.join(__dirname, '/../public')));
 app.use(bodyParser.json());
