@@ -9,18 +9,29 @@ body{
   opacity: 1;
 }
 #app{
-  padding:0px 15px;
+  padding-left:15px;
+  padding-right:15px;
   width:50%;
   float: left;
 }
 div{
   display: block;
 }
-.mainImage{
+.row{
+  margin-left:-15px;
+  margin-right:-15px;
+}
+.col{
   width:100%;
   vertical-align: middle;
+  padding-left: 15px;
+  padding-right: 15px;
+}
+.img{
+  vertical-align: middle;
+  display:block;
+  max-width: 100%;
   height:auto;
-<<<<<<< HEAD
 }
 #zoomInstructions{
   color: rgb(112,112,112);

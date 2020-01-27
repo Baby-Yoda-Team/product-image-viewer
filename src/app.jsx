@@ -25,8 +25,10 @@ class App extends React.Component {
           {this.state.data.images[this.state.currentImage] ? <Image image={this.state.data.images[this.state.currentImage]} product={this.state.data.productName} /> : null
           }
         </div>
-        <div id='zoomInstructions'>Tap or Pinch to Zoom</div>
-        <div id='carousel'>CAROUSEL</div>
+        <div id='zoomInstructions' className='row'>
+          <div className='col'>Click to Zoom</div>
+        </div>
+        <div id='carousel' className='row'>CAROUSEL</div>
       </div>
     )
   }
