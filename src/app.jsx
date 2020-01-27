@@ -18,6 +18,7 @@ class App extends React.Component {
     return (
       <div>
         <div id='main'>MAIN</div>
+        <div id='zoomInstructions'>Tap or Pinch to Zoom</div>
         <div id='carousel'>CAROUSEL</div>
       </div>
     )
