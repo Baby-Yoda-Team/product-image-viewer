@@ -25,7 +25,7 @@ class App extends React.Component {
           }
         </div>
         <div id='zoomInstructions' className='row'>
-          <div className='col'>Click to Zoom</div>
+          <div className='col'><i class="fas fa-search-plus"></i>Click to Zoom</div>
         </div>
         <div id='carousel' className='row'>
           {this.state.data.images != false ? <Carousel images={this.state.data.images} className='row'/> : null}
