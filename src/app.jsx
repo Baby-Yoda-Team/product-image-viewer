@@ -10,12 +10,16 @@ var params = (new URLSearchParams(window.location.search));
 class App extends React.Component {
   constructor(props) {
     super(props);
+    this.selectImage = this.selectImage.bind(this);
     this.state = {
       item_number: params.get('item_number'), currentImage: 0,
       data: { images: [], productName: null }
     }
   }
 
+  selectImage(e) {
+    this.setState({currentImage: e.target.id});
+  }
 
   render() {
     return (
@@ -28,7 +32,7 @@ class App extends React.Component {
           <div className='col'><i class="fas fa-search-plus"></i>Click to Zoom</div>
         </div>
         <div id='carousel' className='row'>
-          {this.state.data.images != false ? <Carousel images={this.state.data.images} className='row'/> : null}
+          {this.state.data.images != false ? <Carousel images={this.state.data.images} selectImage={this.selectImage} className='row' /> : null}
         </div>
       </div>
     )

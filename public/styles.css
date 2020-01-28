@@ -121,4 +121,4 @@ a {
   padding-right: 10px;
 }
 
-/* .animate { transition: transform 0.3s ease-out; } */
+.animate { transition: transform 0.3s ease-out; }
