@@ -1,12 +1,11 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import request from 'es6-request';
-import Image from './image.jsx'
+import Image from './image.jsx';
+import Carousel from './carousel.jsx';
 
 var url = window.location.origin;
 var params = (new URLSearchParams(window.location.search));
-
-console.log(url + params)
 
 class App extends React.Component {
   constructor(props) {
@@ -28,7 +27,9 @@ class App extends React.Component {
         <div id='zoomInstructions' className='row'>
           <div className='col'>Click to Zoom</div>
         </div>
-        <div id='carousel' className='row'>CAROUSEL</div>
+        <div id='carousel' className='row'>
+          {this.state.data.images != false ? <Carousel images={this.state.data.images} className='row'/> : null}
+        </div>
       </div>
     )
   }
@@ -37,7 +38,6 @@ class App extends React.Component {
   componentWillMount() {
     request.get(url + '/product?' + params)
       .then(([body, res]) => {
-        console.log(body);
         body = JSON.parse(body);
         this.setState(state => {
           return { data: body }

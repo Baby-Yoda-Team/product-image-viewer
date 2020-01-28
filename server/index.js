@@ -10,7 +10,6 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
 app.get('/product', (req, res) => {
-  console.log('req.query: ',req.query);
   db.retrieve(req.query, (results) => res.send(results));
 })
 
