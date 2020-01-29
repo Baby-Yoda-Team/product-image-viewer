@@ -5,13 +5,13 @@ import Draggable, { DraggableCore } from 'react-draggable';
 class SliderTrack extends React.Component {
   constructor(props) {
     super(props);
-    this.trackWidth = 20 * this.props.images.length;
-    this.thumbWidth = 100 / this.props.images.length;
-    this.thumbStyle = { width: this.thumbWidth + '%' };
     this.setSlideSnap = this.setSlideSnap.bind(this);
     this.handleClick = this.handleClick.bind(this);
+    this.trackWidth = 20 * this.props.images.length;
+    this.thumbWidth = 100 / this.props.images.length;
+    this.thumbStyle = { width: this.thumbWidth + '%', left: 10 };
     this.state = {
-      trackStyle: { width: this.trackWidth + '%', left: 0 },
+      defaultPosition: { x: 0, y: 0 },
       dragging: false,
       slideSnap: 100,
     }
@@ -31,14 +31,14 @@ class SliderTrack extends React.Component {
 
   setSlideSnap() {
     this.setState(() => {
-      return { slideSnap: document.getElementById('sliderList').clientWidth / 5 }
+      return { slideSnap: document.getElementById('sliderList').clientWidth / 5 - 2 }
     });
   }
 
   render() {
     return (
       <Draggable
-        defaultPosition={{ x: 0, y: 0 }}
+        defaultPosition={this.state.defaultPosition}
         bounds={{ right: 0, left: -(this.state.slideSnap * (this.props.images.length - 5)) }}
         axis='x'
         grid={[this.state.slideSnap]}
@@ -46,7 +46,7 @@ class SliderTrack extends React.Component {
           this.setState(() => { return { dragging: true } })
         }}
       >
-        <div id='sliderTrack' style={this.state.trackStyle} >
+        <div id='sliderTrack' style={{ width: this.trackWidth + '%' }} >
           {
             this.props.images.map((image, index) =>
               <div className='thumbLink' style={this.thumbStyle}>

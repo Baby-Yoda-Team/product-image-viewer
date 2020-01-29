@@ -13,7 +13,7 @@ class App extends React.Component {
     this.selectImage = this.selectImage.bind(this);
     this.state = {
       item_number: params.get('item_number'), currentImage: 0,
-      data: { images: [], productName: null }
+      data: { images: [], productName: null },
     }
   }
 
@@ -31,7 +31,7 @@ class App extends React.Component {
         <div id='zoomInstructions' className='row'>
           <div className='col'><i class="fas fa-search-plus"></i>Click to Zoom</div>
         </div>
-        <div id='carousel' className='row'>
+        <div id='carousel' className='row' defaultPosition={this.state.defaultPosition}>
           {this.state.data.images != false ? <Carousel images={this.state.data.images} selectImage={this.selectImage} className='row' /> : null}
         </div>
       </div>
