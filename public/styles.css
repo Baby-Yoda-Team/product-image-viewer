@@ -91,7 +91,7 @@ a {
 
 }
 #sliderTrack{
-
+  transition: transform 0.8s ease-out;
 }
 .thumbLink{
   font-size: 1px;
@@ -105,6 +105,7 @@ a {
   display: block;
 }
 .thumbnail{
+  -webkit-user-drag: none;
   display:block;
   width:83%;
   border-color: rgb(48, 113, 169);
@@ -121,4 +122,4 @@ a {
   padding-right: 10px;
 }
 
-.animate { transition: transform 0.3s ease-out; }
+/* .animate { transition: transform 0.3s ease-out; } */ */

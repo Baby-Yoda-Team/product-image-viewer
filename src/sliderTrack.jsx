@@ -1,96 +1,71 @@
 import React from 'react';
+import Draggable, { DraggableCore } from 'react-draggable';
+
 
 class SliderTrack extends React.Component {
   constructor(props) {
     super(props);
     this.trackWidth = 20 * this.props.images.length;
-    this.trackStyle = { width: this.trackWidth + '%' };
     this.thumbWidth = 100 / this.props.images.length;
     this.thumbStyle = { width: this.thumbWidth + '%' };
-    this.defaultProps = {
-      initialPos: {x: 0, y: 0}
-    }
+    this.setSlideSnap = this.setSlideSnap.bind(this);
+    this.handleClick = this.handleClick.bind(this);
     this.state = {
-
+      trackStyle: { width: this.trackWidth + '%', left: 0 },
+      dragging: false,
+      slideSnap: 100,
     }
   }
 
-//   getInitialState() {
-//     return {
-//       pos: this.props.initialPos,
-//       dragging: false,
-//       rel: null
-//     }
-//   },
+  handleClick(e) {
+    if (this.state.dragging === false) {
+      this.props.selectImage(e);
+    } else {
+      this.setState(() => {
+        return { dragging: false };
+      })
+    }
 
-//   componentDidUpdate(props, state) {
-//     if (this.state.dragging && !state.dragging) {
-//       document.addEventListener('mousemove', this.onMouseMove)
-//       document.addEventListener('mouseup', this.onMouseUp)
-//     } else if (!this.state.dragging && state.dragging) {
-//       document.removeEventListener('mousemove', this.onMouseMove)
-//       document.removeEventListener('mouseup', this.onMouseUp)
-//     }
-//   }
+  }
 
-//   // calculate relative position to the mouse and set dragging=true
-//   onMouseDown(e) {
-//     // only left mouse button
-//     if (e.button !== 0) return
-//     var pos = $(this.getDOMNode()).offset()
-//     this.setState({
-//       dragging: true,
-//       rel: {
-//         x: e.pageX - pos.left,
-//         y: e.pageY - pos.top
-//       }
-//     })
-//     e.stopPropagation()
-//     e.preventDefault()
-//   }
 
-//   onMouseUp(e) {
-//     this.setState({dragging: false})
-//     e.stopPropagation()
-//     e.preventDefault()
-//   }
-
-//   onMouseMove(e) {
-//     if (!this.state.dragging) return
-//     this.setState({
-//       pos: {
-//         x: e.pageX - this.state.rel.x,
-//         y: e.pageY - this.state.rel.y
-//       }
-//     })
-//     e.stopPropagation()
-//     e.preventDefault()
-//   }
-
-//   render() {
-//     // transferPropsTo will merge style & other props passed into our
-//     // component to also be on the child DIV.
-//     return this.transferPropsTo(React.DOM.div({
-//       onMouseDown: this.onMouseDown,
-//       style: {
-//         left: this.state.pos.x + 'px',
-//         top: this.state.pos.y + 'px'
-//       }
-//     }, this.props.children))
-//   }
-// })
-
+  setSlideSnap() {
+    this.setState(() => {
+      return { slideSnap: document.getElementById('sliderList').clientWidth / 5 }
+    });
+  }
 
   render() {
     return (
-      <div id='sliderTrack' style={this.trackStyle}>
-        {this.props.images.map((image, index) =>
-          <div className='thumbLink' style={this.thumbStyle}>
-            <img id={index} onClick={this.props.selectImage} className='thumbnail' src={image + '/200/200.jpg'} />
-          </div>
-        )}
-      </div>
+      <Draggable
+        defaultPosition={{ x: 0, y: 0 }}
+        bounds={{ right: 0, left: -(this.state.slideSnap * (this.props.images.length - 5)) }}
+        axis='x'
+        grid={[this.state.slideSnap]}
+        onDrag={() => {
+          this.setState(() => { return { dragging: true } })
+        }}
+      >
+        <div id='sliderTrack' style={this.state.trackStyle} >
+          {
+            this.props.images.map((image, index) =>
+              <div className='thumbLink' style={this.thumbStyle}>
+                <img id={index} onClick={this.handleClick} className='thumbnail' src={image + '/150/150.jpg'} />
+              </div>
+            )
+          }
+        </div>
+      </Draggable>
     )
+  }
+
+  componentDidMount() {
+    this.setSlideSnap();
+    window.addEventListener('resize', this.setSlideSnap);
+  }
+
+  componentWillUnmount() {
+    window.removeEventListener('resize', this.setSlideSnap);
   }
 }
 
