@@ -1,22 +1,25 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import request from 'es6-request';
-import Image from './image.jsx'
+import Image from './image.jsx';
+import Carousel from './carousel.jsx';
 
 var url = window.location.origin;
 var params = (new URLSearchParams(window.location.search));
 
-console.log(url + params)
-
 class App extends React.Component {
   constructor(props) {
     super(props);
+    this.selectImage = this.selectImage.bind(this);
     this.state = {
       item_number: params.get('item_number'), currentImage: 0,
-      data: { images: [], productName: null }
+      data: { images: [], productName: null },
     }
   }
 
+  selectImage(e) {
+    this.setState({currentImage: e.target.id});
+  }
 
   render() {
     return (
@@ -25,8 +28,12 @@ class App extends React.Component {
           {this.state.data.images[this.state.currentImage] ? <Image image={this.state.data.images[this.state.currentImage]} product={this.state.data.productName} /> : null
           }
         </div>
-        <div id='zoomInstructions'>Tap or Pinch to Zoom</div>
-        <div id='carousel'>CAROUSEL</div>
+        <div id='zoomInstructions' className='row'>
+          <div className='col'><i class="fas fa-search-plus"></i>Click to Zoom</div>
+        </div>
+        <div id='carousel' className='row' defaultPosition={this.state.defaultPosition}>
+          {this.state.data.images != false ? <Carousel images={this.state.data.images} selectImage={this.selectImage} className='row' /> : null}
+        </div>
       </div>
     )
   }
@@ -35,7 +42,6 @@ class App extends React.Component {
   componentWillMount() {
     request.get(url + '/product?' + params)
       .then(([body, res]) => {
-        console.log(body);
         body = JSON.parse(body);
         this.setState(state => {
           return { data: body }
