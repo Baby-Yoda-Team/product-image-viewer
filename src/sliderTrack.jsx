@@ -18,14 +18,9 @@ class SliderTrack extends React.Component {
   }
 
   handleClick(e) {
-    if (this.state.dragging === false) {
+    // if (this.state.dragging === false) {
       this.props.selectImage(e);
-    } else {
-      this.setState(() => {
-        return { dragging: false };
-      })
-    }
-
+    // }
   }
 
 
@@ -43,7 +38,10 @@ class SliderTrack extends React.Component {
         axis='x'
         grid={[this.state.slideSnap]}
         onDrag={() => {
-          this.setState(() => { return { dragging: true } })
+          // this.setState(() => { return { dragging: true } })
+        }}
+        onStop={() => {
+          // this.setState(() => { return { dragging: false } })
         }}
       >
         <div id='sliderTrack' style={{ width: this.trackWidth + '%' }} >
