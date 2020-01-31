@@ -15,10 +15,18 @@ class App extends React.Component {
       item_number: params.get('item_number'), currentImage: 0,
       data: { images: [], productName: null },
     }
+    request.get(url + '/product?' + params)
+      .then(([body, res]) => {
+        body = JSON.parse(body);
+        this.setState(state => {
+          return { data: body }
+        })
+      })
+      .catch(err => console.log(err));
   }
 
   selectImage(e) {
-    this.setState({currentImage: e.target.id});
+    this.setState({ currentImage: e.target.id });
   }
 
   render() {
@@ -29,26 +37,15 @@ class App extends React.Component {
           }
         </div>
         <div id='zoomInstructions' className='row'>
-          <div className='col'><i class="fas fa-search-plus"></i>Click to Zoom</div>
+          <div className='col'><i className="fas fa-search-plus"></i>Click to Zoom</div>
         </div>
-        <div id='carousel' className='row' defaultPosition={this.state.defaultPosition}>
+        <div id='carousel' className='row'>
           {this.state.data.images != false ? <Carousel images={this.state.data.images} selectImage={this.selectImage} className='row' /> : null}
         </div>
       </div>
     )
   }
 
-
-  componentWillMount() {
-    request.get(url + '/product?' + params)
-      .then(([body, res]) => {
-        body = JSON.parse(body);
-        this.setState(state => {
-          return { data: body }
-        })
-      })
-      .catch(err => console.log(err));
-  }
 }
 
 export default App;

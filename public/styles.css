@@ -86,8 +86,12 @@ a {
   overflow: hidden;
 }
 #sliderTrack{
+<<<<<<< HEAD
   transition: left 0.2s linear;
   position: relative;
+=======
+  transition: transform 0.6s ease-out;
+>>>>>>> 92d4b6dbe2e91b51b263aec6228d3cf2c478779e
 }
 .thumbLink{
 
@@ -118,4 +122,4 @@ a {
   padding-right: 10px;
 }
 
-/* .animate { transition: transform 0.3s ease-out; } */ */
+/* .animate { transition: transform 0.3s ease-out; } */
