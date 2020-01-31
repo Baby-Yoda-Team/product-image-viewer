@@ -45,10 +45,23 @@ a {
   }
 }
 .img{
-  display:block;
-  max-width: 100%;
+  overflow: hidden;
   height:auto;
 }
+#zoomWindow{
+  overflow: hidden;
+  width: 100%;
+  cursor: zoom-in;
+}
+#mainImage{
+  max-width: 100%;
+  display: block;
+}
+#zoomImage{
+  /* overflow: hidden; */
+  position: relative;
+  display: none;
+ }
 .arrow{
   visibility:visible;
   display: inline-block !important;

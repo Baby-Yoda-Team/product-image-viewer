@@ -14,7 +14,7 @@ class Carousel extends React.Component {
     this.handleDrag = this.handleDrag.bind(this);
     this.handleStop = this.handleStop.bind(this);
     this.state = {
-      trackPos: 0,
+      trackPos: 2,
       slideSnap: 100,
     }
   }
@@ -27,7 +27,7 @@ class Carousel extends React.Component {
   }
 
   getLeftBound() {
-    return this.state.slideSnap * -(this.props.images.length - 5)
+    return this.state.slideSnap * -(this.props.images.length - 5) + 2
   }
 
   handleStop() {
@@ -40,14 +40,14 @@ class Carousel extends React.Component {
         return { trackPos: this.getLeftBound() }
       });
       document.getElementById('viewNext').style.color = 'rgb(156,156,156)';
-    } else if (this.state.trackPos >= 0 - .5 * this.state.slideSnap) {
+    } else if (this.state.trackPos >= 2 - .5 * this.state.slideSnap) {
       document.getElementById('viewPrev').style.color = 'rgb(156,156,156)';
       this.setState((state) => {
-        return { trackPos: 0 }
+        return { trackPos: 2 }
       })
     } else {
       this.setState((state) => {
-        return { trackPos: Math.round(state.trackPos / state.slideSnap) * state.slideSnap }
+        return { trackPos: Math.round(state.trackPos / state.slideSnap) * state.slideSnap + 2}
       })
     }
     setTimeout(() => {
@@ -64,11 +64,11 @@ class Carousel extends React.Component {
     target.id === 'viewPrev' ? direction = 1 : direction = -1;
     track.style.transition = 'left 0.6s ease-out';
     if (target.id === 'viewPrev'
-      && this.state.trackPos >= 0 - 4 * this.state.slideSnap
+      && this.state.trackPos >= 2 - 4 * this.state.slideSnap
     ) {
       target.style.color = 'rgb(156,156,156)';
       this.setState((state) => {
-        return { trackPos: 0 }
+        return { trackPos: 2 }
       })
     } else if (target.id === 'viewNext' && this.state.trackPos <= this.getLeftBound() + 4 * this.state.slideSnap
     ) {
@@ -88,7 +88,7 @@ class Carousel extends React.Component {
 
   setSlideSnap() {
     this.setState(() => {
-      return { slideSnap: Math.round(document.getElementById('sliderList').clientWidth / 5) - 2 }
+      return { slideSnap: Math.round(document.getElementById('sliderList').clientWidth / 5)}
     });
   }
 
@@ -98,9 +98,6 @@ class Carousel extends React.Component {
         <button id='viewPrev' className='arrow fas fa-chevron-left' onClick={this.arrowClick} />
         <div id='sliderList'>
           <DraggableCore
-            // defaultPosition={{ x: 0, y: 0 }}
-            // bounds={{ right: 0, left: -(this.state.slideSnap * (this.props.images.length - 5)) }}
-            // axis='x'
             position={this.state.position}
             grid={[20]}
             onStart={this.handleStart}
