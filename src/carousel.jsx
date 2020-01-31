@@ -21,7 +21,7 @@ class Carousel extends React.Component {
 
   handleDrag(e) {
     this.setState((state) => {
-      return { trackPos: Math.round(state.trackPos + (Math.sign(e.movementX) * this.state.slideSnap / 20)) }
+      return { trackPos: Math.round(state.trackPos + (Math.sign(e.movementX) * 20)) }
     })
     document.getElementById('sliderTrack').style.left = this.state.trackPos;
   }
@@ -51,7 +51,7 @@ class Carousel extends React.Component {
       })
     }
     setTimeout(() => {
-      track.style.transition = 'none'
+      track.style.transition = 'left 0.2s linear'
     }, 300)
   }
 
@@ -82,7 +82,7 @@ class Carousel extends React.Component {
       });
     }
     setTimeout(() => {
-      track.style.transition = 'none'
+      track.style.transition = 'left 0.2s linear'
     }, 600)
   }
 
@@ -102,7 +102,7 @@ class Carousel extends React.Component {
             // bounds={{ right: 0, left: -(this.state.slideSnap * (this.props.images.length - 5)) }}
             // axis='x'
             position={this.state.position}
-            grid={[this.state.slideSnap / 20]}
+            grid={[20]}
             onStart={this.handleStart}
             onDrag={this.handleDrag}
             onStop={this.handleStop}
