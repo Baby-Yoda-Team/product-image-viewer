@@ -29,22 +29,22 @@ class Image extends React.Component {
       y: zoomImage.getBoundingClientRect().top + window.pageYOffset
     }
     var mainImageOffset = {
-      x: mainImage.getBoundingClientRect().left + window.pageXOffset,
-      y: mainImage.getBoundingClientRect().top + window.pageYOffset
-    }
-    var zoomClickOffset = {
-      x: e.pageX - zoomImageOffset.x,
-      y: e.pageY - zoomImageOffset.y
+      x: zoomWindow.getBoundingClientRect().left + window.pageXOffset,
+      y: zoomWindow.getBoundingClientRect().top + window.pageYOffset
     }
     var mainClickOffset = {
       x: e.pageX - mainImageOffset.x,
       y: e.pageY - mainImageOffset.y
     }
+    var zoomClickOffset = {
+      x: e.pageX - zoomImageOffset.x,
+      y: e.pageY - zoomImageOffset.y
+    }
+    console.log('zio: ', zoomImageOffset, 'mio: ', mainImageOffset, 'mco: ', mainClickOffset)
     if (this.state.zoomLevel === 0) {
       //display larger image
       mainImage.style.display = 'none';
       zoomImage.style.display = 'block';
-
       var oldWidth = this.getWindowSize();
       var newWidth = (this.getWindowSize() + 1200) / 2;
       zoomImage.style.width = (newWidth + 'px');
@@ -58,9 +58,9 @@ class Image extends React.Component {
       var oldWidth = document.getElementById('zoomImage').clientWidth;
       zoomImage.style.width = '1200px';
       //reset position based on e coordinates
-      console.log(zoomClickOffset.x, oldWidth, zoomImageOffset.x ,-Math.round(zoomClickOffset.x / oldWidth) * (1200 - oldWidth) + zoomImageOffset.x);
-      zoomImage.style.left = (-Math.round(zoomClickOffset.x / oldWidth) * (1200 - oldWidth) + zoomImageOffset.x) + 'px';
-      zoomImage.style.top = (-Math.round(zoomClickOffset.y / oldWidth) * (1200 - oldWidth) + zoomImageOffset.y) + 'px';
+      zoomImage.style.left = (-Math.round(zoomClickOffset.x / oldWidth * (1200 - oldWidth) - (zoomImageOffset.x - mainImageOffset.x)) + 'px');
+      //zoomImageOffset.x - mainImageOffset.x + (mainClickOffset.x * 1200 / oldWidth))
+      zoomImage.style.top = (-Math.round(zoomClickOffset.y / oldWidth * (1200 - oldWidth) - (zoomImageOffset.y - mainImageOffset.y)) + 'px');
       this.setState((state) => {
         return ({ zoomLevel: 2 })
       })
