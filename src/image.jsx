@@ -8,7 +8,6 @@ class Image extends React.Component {
     this.zoomClick = this.zoomClick.bind(this);
     this.state = {
       zoomLevel: 0,
-      position: { x: 0, y: 0 }
     }
   }
 
@@ -92,13 +91,3 @@ class Image extends React.Component {
 
 export default Image;
 
-// zoom image
-//     position: absolute;
-//     top: 0px;
-//     left: -211px;
-//     z-index: 5000;
-//     max-width: 1200px;
-//     max-height: 1200px;
-//     width: 804px;
-//     height: 803.5px;
-//     overflow: hidden;
