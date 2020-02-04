@@ -15,7 +15,7 @@ for (var i = 0; i < config.dbSize; i++) {
   var product = new config.Product;
   product.name = faker.commerce.productName();
   product.item_number = i;
-  var num = randBetween(5, 10);
+  var num = randBetween(6, 10);
   for (var x = 0; x < num; x++) {
     var photoId = randBetween(1, 1000);
     product.images.push(`https://picsum.photos/id/${photoId}`);
