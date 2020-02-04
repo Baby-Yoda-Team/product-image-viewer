@@ -1,10 +1,12 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import styles  from '../public/styles.css';
 import request from 'es6-request';
 import Image from './image.jsx';
 import Carousel from './carousel.jsx';
 
-var url = window.location.origin;
+const port = 3004;
+var url = 'http://localhost:' + port;
 var params = (new URLSearchParams(window.location.search));
 
 class App extends React.Component {
