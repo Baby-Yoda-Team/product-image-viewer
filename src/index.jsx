@@ -1,5 +1,5 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import App from './app.jsx';
+import ProductImageViewer from './ProductImageViewer.jsx';
 
-ReactDOM.render(<App />, document.getElementById('app'));
+ReactDOM.render(<ProductImageViewer />, document.getElementById('app'));

@@ -3,7 +3,7 @@ const config = require('./config.js');
 
 
 var db = mongoose.connect(config.uri, config.options).then(
-  () => { console.log('connected to costco database...') },
+  () => { console.log('connected to costcoImage database...') },
   err => { console.log(err) }
 );
 

@@ -10,7 +10,7 @@ var schema = new mongoose.Schema({
 
 module.exports = {
   dbSize: 10,
-  uri: 'mongodb://localhost:27017/costco',
+  uri: 'mongodb://localhost:27017/costcoImage',
   options: { useNewUrlParser: true, useUnifiedTopology: true },
   Product: mongoose.model('Product', schema)
 }
