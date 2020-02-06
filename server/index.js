@@ -1,7 +1,7 @@
 const express = require('express');
 const app = express();
 const port = 3004;
-const originUrl = 'http://localhost:4000';
+const originUrl = '*';
 const path = require('path');
 const db = require('../db/index.js');
 const bodyParser = require('body-parser');
@@ -21,7 +21,6 @@ app.get('/product', (req, res) => {
   } else {
     var query = req.query;
   }
-  console.log(query);
   db.retrieve(query, (results) => res.send(results));
 })
 

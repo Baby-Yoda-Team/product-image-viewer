@@ -39,7 +39,7 @@ class Image extends React.Component {
       x: e.pageX - zoomImageOffset.x,
       y: e.pageY - zoomImageOffset.y
     }
-    console.log('zio: ', zoomImageOffset, 'mio: ', mainImageOffset, 'mco: ', mainClickOffset)
+
     if (this.state.zoomLevel === 0) {
       //display larger image
       mainImage.style.display = 'none';
