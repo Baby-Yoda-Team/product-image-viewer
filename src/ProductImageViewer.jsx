@@ -6,7 +6,7 @@ import Image from './image.jsx';
 import Carousel from './carousel.jsx';
 
 const port = 3004;
-var url = `http://${window.location.hostname}:${port}`;
+var url = `http://http://ec2-3-14-128-79.us-east-2.compute.amazonaws.com:${port}`;
 var params = (new URLSearchParams(window.location.search));
 
 class ProductImageViewer extends React.Component {
