@@ -7,7 +7,7 @@
     "test": "jest",
     "build": "npx webpack",
     "build:dev": "npx webpack --watch",
-    "start":"node server/index.js",
+    "start": "node server/index.js",
     "start:dev": "nodemon",
     "seed": "node db/seeder.js"
   },
