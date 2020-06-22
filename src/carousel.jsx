@@ -8,7 +8,6 @@ class Carousel extends React.Component {
     this.trackWidth = 20 * this.props.images.length;
     this.thumbWidth = 100 / this.props.images.length;
     this.thumbStyle = { width: this.thumbWidth + '%', left: 10 };
-
     this.setSlideSnap = this.setSlideSnap.bind(this);
     this.arrowClick = this.arrowClick.bind(this);
     this.handleDrag = this.handleDrag.bind(this);
@@ -47,7 +46,7 @@ class Carousel extends React.Component {
       })
     } else {
       this.setState((state) => {
-        return { trackPos: Math.round(state.trackPos / state.slideSnap) * state.slideSnap + 2}
+        return { trackPos: Math.round(state.trackPos / state.slideSnap) * state.slideSnap + 2 }
       })
     }
     setTimeout(() => {
@@ -88,7 +87,7 @@ class Carousel extends React.Component {
 
   setSlideSnap() {
     this.setState(() => {
-      return { slideSnap: Math.round(document.getElementById('sliderList').clientWidth / 5)}
+      return { slideSnap: Math.round(document.getElementById('sliderList').clientWidth / 5) }
     });
   }
 
@@ -100,7 +99,6 @@ class Carousel extends React.Component {
           <DraggableCore
             position={this.state.position}
             grid={[20]}
-            onStart={this.handleStart}
             onDrag={this.handleDrag}
             onStop={this.handleStop}
           >
@@ -108,7 +106,7 @@ class Carousel extends React.Component {
               {
                 this.props.images.map((image, index) =>
                   <div className='thumbLink' style={this.thumbStyle}>
-                    <img id={index} onClick={this.props.selectImage} className='thumbnail' src={image + '/150/150.jpg'} />
+                    <img id={index} onClick={this.props.selectImage} onMouseDown={(e) => { e.preventDefault() }} className='thumbnail' src={image + '/150/150.jpg'} />
                   </div>
                 )
               }
