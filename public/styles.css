@@ -52,6 +52,7 @@ a {
   overflow: hidden;
   width: 100%;
   cursor: zoom-in;
+  cursor: -webkit-zoom-in;
 }
 #mainImage{
   width: 100%;
